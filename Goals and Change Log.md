@@ -1,9 +1,9 @@
 <h1> Goals </h1>
 
-- [ ] Steps only
-    - [ ] Get daily steps
+- [x] Steps only
+    - [x] Get daily steps
     - [ ] Create Grafana chart
-    - [ ] Get previous month steps
+    - [x] Get previous month steps
 - [ ] Create pipeline for getting steps to grafana chart
     - [ ] Dockerize container
     - [ ] CICD + Credentials
