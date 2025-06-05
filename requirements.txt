@@ -20,7 +20,7 @@ gspread-dataframe==4.0.0
 httplib2==0.22.0
 idna==3.10
 ipykernel==6.29.5
-ipython==9.3.0
+# ipython==9.3.0 # might just be for jupyter, don't need that I reckon
 ipython_pygments_lexers==1.1.1
 jedi==0.19.2
 jupyter_client==8.6.3
