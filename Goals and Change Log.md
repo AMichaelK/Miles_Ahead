@@ -12,6 +12,7 @@
     - [ ] Run this repo
     - [ ] Set up keys/creds
     - [ ] Set up daily runs
+    - [ ] Push data to Grafana?
 - [ ] Create pipeline for getting steps to grafana chart
     - [ ] Dockerize container
     - [ ] CICD + Credentials

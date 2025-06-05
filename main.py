@@ -16,9 +16,9 @@ yesterday = yesterday.isoformat()
 
 # Login
 garmin = GarminAuth(
-    email = os.getenv("EMAIL"),
-    password = os.getenv("PASS"),
-    tokenstore = os.getenv("GARMINTOKENS")
+    email=os.getenv("EMAIL"),
+    password=os.getenv("PASS"),
+    tokenstore=os.getenv("GARMINTOKENS")
 )
 
 garmin.login()
