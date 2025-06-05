@@ -9,12 +9,14 @@
     - [x] Update sheets
     - [x] Append daily step data
 - [ ] Github Actions
+    - [x] Run an example file
     - [ ] Run this repo
     - [ ] Set up keys/creds
     - [ ] Set up daily runs
     - [ ] Push data to Grafana?
 - [ ] Create pipeline for getting steps to grafana chart
-    - [ ] Dockerize container
+    - [x] Dockerize container
+    - [ ] Set up credentials to run from Docker to Gsheets
     - [ ] CICD + Credentials
         - [ ] Github actions
         - [ ] Azure DevOps
