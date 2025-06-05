@@ -1,14 +1,9 @@
 import gspread
 from gspread_dataframe import set_with_dataframe
 from google.oauth2.service_account import Credentials
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
-import pandas as pd
 import os
-from dotenv import load_dotenv
 
 class GSheets:
-    # load_dotenv(override=True)
 
     def authenticate(self):
         
@@ -18,16 +13,12 @@ class GSheets:
         credentials = Credentials.from_service_account_file(os.getenv('SACREDS'), scopes=scopes)
 
         return gspread.authorize(credentials)
-        # gc = gspread.authorize(credentials)
-
-        # gauth = GoogleAuth()
-        # drive = GoogleDrive(gauth) # do I need drive?
 
     def selectSheet(self, gcreds, sheetKey, tab):
 
-        # open a google sheet
+        # Open a google sheet
         gs = gcreds.open_by_key(sheetKey)
-
+        # Set sheet
         sheet = gs.worksheet(tab)
 
         return sheet, gs
@@ -40,7 +31,6 @@ class GSheets:
     def setSheet(self, sheet, df):
         # Sets in the Sheet
         set_with_dataframe(worksheet=sheet, dataframe=df, include_index=False, include_column_header=True, resize=True)
-
 
     def appendSheet(self, sheet, df, gs):
         # Appends to the sheet

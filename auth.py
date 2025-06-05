@@ -1,7 +1,7 @@
 import garth
-from getpass import getpass
 
 class GarminAuth:
+
     def __init__(self, email: str = None, password: str = None, tokenstore: str = None):
         self.email = email
         self.password = password
@@ -21,9 +21,8 @@ class GarminAuth:
         self.authenticated = True
         self.client = garth
         return self.client
-    
+
     def connectapi(self, url):
         if not self.authenticated:
             self.login()
         return self.client.connectapi(url)
-
