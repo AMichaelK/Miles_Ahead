@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pull image from Docker Hub
-      run: docker pull amichaelk/py-garmin-tracking@latest
+      run: docker pull amichaelk/py-garmin-tracking:latest
 
     - name: Run Docker container
       run: docker run --rm amichaelk/py-garmin-tracking:latest argthefirst argthesecond argthethird
