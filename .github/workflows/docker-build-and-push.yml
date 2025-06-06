@@ -1,10 +1,7 @@
-name: Docker Image CI
+name: Docker Image Build and Push to Docker Hub
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build_and_push:
@@ -28,3 +25,4 @@ jobs:
       with:
         push: true
         tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${{ env.timestamp }}
+              ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest

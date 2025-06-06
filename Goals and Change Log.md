@@ -10,8 +10,11 @@
     - [x] Append daily step data
 - [ ] Github Actions
     - [x] Run an example file
-    - [ ] Run this repo
+    - [x] Run an example file with parameters
+    - [ ] Run a docker container from Docker Hub
+    - [ ] Run a docker container (with env variables) from Docker Hub
     - [ ] Set up keys/creds
+        - [ ] Can I programmatically save env variables? Or is it ephemeral?
     - [ ] Set up daily runs
     - [ ] Push data to Grafana?
 - [ ] Create pipeline for getting steps to grafana chart

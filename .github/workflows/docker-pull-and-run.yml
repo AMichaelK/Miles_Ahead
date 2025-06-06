@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Pull and Run
 
 on:
   workflow_dispatch:
