@@ -15,4 +15,8 @@ jobs:
     - name: Run Docker container
       env:
         GARMIN_TOKEN: ${{ secrets.GARMIN_TOKEN }}
-      run: docker run --rm amichaelk/py-garmin-tracking:latest argthefirst argthesecond argthethird "$TOKEN"
+      run: |
+        docker run --rm \
+          -e EMAIL=${{ secrets.EMAIL }} \
+          -e PASS=${{ secrets.PASS }} \
+          amichaelk/py-garmin-tracking:latest

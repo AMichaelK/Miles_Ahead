@@ -17,33 +17,34 @@ yesterday = yesterday.isoformat()
 # Login
 garmin = GarminAuth(
     email=os.getenv("EMAIL"),
-    password=os.getenv("PASS"),
-    tokenstore=os.getenv("GARMINTOKENS")
+    password=os.getenv("PASS")
 )
 
 garmin.login()
 
+print(dir(garmin.client))
+
 # Instantiate API
-api = GarminAPI()
+# api = GarminAPI()
 
-# Instantiate Google Sheets
-gsheets = GSheets()
+# # Instantiate Google Sheets
+# gsheets = GSheets()
 
-# Get steps from yesterday
-# steps = garmin.connectapi("/usersummary-service/stats/steps/daily/2025-06-03/2025-06-03")
-url = api.get_daily_steps(yesterday, yesterday)
-steps = garmin.connectapi(url)
+# # Get steps from yesterday
+# # steps = garmin.connectapi("/usersummary-service/stats/steps/daily/2025-06-03/2025-06-03")
+# url = api.get_daily_steps(yesterday, yesterday)
+# steps = garmin.connectapi(url)
 
-# Set steps in Pandas DataFrame
-df = pd.DataFrame(steps)
-# Delete rows with NaN
-df = df.dropna()
+# # Set steps in Pandas DataFrame
+# df = pd.DataFrame(steps)
+# # Delete rows with NaN
+# df = df.dropna()
 
-# Google Sheets
-gc = gsheets.authenticate()
+# # Google Sheets
+# gc = gsheets.authenticate()
 
-# Select sheet
-sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'Steps')
+# # Select sheet
+# sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'Steps')
 
-# Append yesterday's steps to the sheet
-gsheets.appendSheet(sheet, df, gs)
+# # Append yesterday's steps to the sheet
+# gsheets.appendSheet(sheet, df, gs)

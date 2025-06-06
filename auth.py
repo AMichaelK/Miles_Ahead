@@ -2,21 +2,14 @@ import garth
 
 class GarminAuth:
 
-    def __init__(self, email: str = None, password: str = None, tokenstore: str = None):
+    def __init__(self, email: str = None, password: str = None):
         self.email = email
         self.password = password
-        self.tokenstore = "~/.garth"
         self.authenticated = False
         self.client = None
 
     def login(self):
-        try:
-            garth.resume("~/.garth")
-        except:
-            if not self.email or not self.password:
-                raise ValueError("Email and password required for 1st time login!")
-            garth.login(self.email, self.password)
-            garth.dump(self.tokenstore)
+        garth.login(self.email, self.password)
 
         self.authenticated = True
         self.client = garth
