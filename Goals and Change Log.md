@@ -11,10 +11,13 @@
 - [ ] Github Actions
     - [x] Run an example file
     - [x] Run an example file with parameters
-    - [ ] Run a docker container from Docker Hub
-    - [ ] Run a docker container (with env variables) from Docker Hub
+    - [x] Run a docker container from Docker Hub
+    - [x] Run a docker container (with env variables) from Docker Hub
     - [ ] Set up keys/creds
-        - [ ] Can I programmatically save env variables? Or is it ephemeral?
+        - [x] Can I programmatically save env variables? Or is it ephemeral?
+              No. But you can save it in steps output or save it using github cli "gh"
+        - [x] Authenticate w/ Garmin while running via Github Actions -> Docker Run
+        - [ ] Authenticate w/ Google Sheetsvia Github Actions -> Docker Run
     - [ ] Set up daily runs
     - [ ] Push data to Grafana?
 - [ ] Create pipeline for getting steps to grafana chart
