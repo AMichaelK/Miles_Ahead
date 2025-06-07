@@ -1,7 +1,9 @@
 import gspread
 from gspread_dataframe import set_with_dataframe
 from google.oauth2.service_account import Credentials
+import base64
 import os
+import json
 
 class GSheets:
 
@@ -10,7 +12,10 @@ class GSheets:
         scopes = ['https://www.googleapis.com/auth/spreadsheets',
                 'https://www.googleapis.com/auth/drive']
 
-        credentials = Credentials.from_service_account_file(os.getenv('SACREDS'), scopes=scopes)
+        
+        decodedBytes = base64.b64decode(os.getenv('SACREDS'))
+        sa_info = json.loads(decodedBytes)
+        credentials = Credentials.from_service_account_info(sa_info, scopes=scopes)
 
         return gspread.authorize(credentials)
 

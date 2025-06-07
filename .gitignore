@@ -1,3 +1,4 @@
 .env
 venv
-scratchAPI.py
+scratchOriginalAPI.py
+__pycache__
