@@ -19,4 +19,6 @@ jobs:
         docker run --rm \
           -e EMAIL=${{ secrets.EMAIL }} \
           -e PASS=${{ secrets.PASS }} \
+          -e SHEETKEY= ${{ secrets.SHEETKEY }} \
+          -e SACREDS= ${{ secrets.SACREDS }} \
           amichaelk/py-garmin-tracking:latest
