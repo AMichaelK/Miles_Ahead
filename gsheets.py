@@ -3,6 +3,7 @@ from gspread_dataframe import set_with_dataframe
 from google.oauth2.service_account import Credentials
 import base64
 import os
+import json
 
 class GSheets:
 
@@ -13,7 +14,8 @@ class GSheets:
 
         
         decodedBytes = base64.b64decode(os.getenv('SACREDS'))
-        credentials = Credentials.from_service_account_file(decodedBytes, scopes=scopes)
+        sa_info = json.load(decodedBytes)
+        credentials = Credentials.from_service_account_info(sa_info, scopes=scopes)
 
         return gspread.authorize(credentials)
 
