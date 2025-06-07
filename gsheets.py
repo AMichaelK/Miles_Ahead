@@ -14,7 +14,7 @@ class GSheets:
 
         
         decodedBytes = base64.b64decode(os.getenv('SACREDS'))
-        sa_info = json.load(decodedBytes)
+        sa_info = json.loads(decodedBytes)
         credentials = Credentials.from_service_account_info(sa_info, scopes=scopes)
 
         return gspread.authorize(credentials)
