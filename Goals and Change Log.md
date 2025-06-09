@@ -1,8 +1,8 @@
 <h1> Goals </h1>
 
-- [ ] Steps only
+- [x] Steps only
     - [x] Get daily steps
-    - [ ] Create Grafana chart
+    - [x] Create Grafana chart
     - [x] Get previous month steps
 - [x] Google Sheets
     - [x] Authenticate
@@ -23,11 +23,17 @@
     - [x] Dockerize container
     - [x] Set up credentials to run from Docker to Gsheets
     - [x] CICD + Credentials
-        - [ ] Github actions
+        - [x] Github actions
         - [ ] Azure DevOps
-    - [ ] Push data to Grafana
+    - [x] Push data to Grafana
 - [ ] Grafana
-    - [ ] Set up graph for daily steps
-        - [ ] Show actual, target
-    - [ ] More metrics    
+    - [x] Set up graph for daily steps
+        - [x] Show actual, target
+    - [ ] More metrics
+        - [ ] Total miles since x date
+            - [ ] Compare mileage to large cities in the world?
+        - [ ] Total stairs (per month from start date? but just show YTD?)
+            - [ ] Compare to world's largest mountains
+        - [ ] Calories burned
+        - [ ] Intensity Minutes / Goal   
     
