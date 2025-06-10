@@ -13,7 +13,7 @@ load_dotenv(override=True)
 TwentyEightDaysAgo = date.today() - timedelta(days=28)
 yesterday = date.today() - timedelta(days=1)
 yesterday = yesterday.isoformat()
-today = datetime.date.today()
+today = date.today()
 
 # Login
 garmin = GarminAuth(
