@@ -67,9 +67,9 @@ gc = gsheets.authenticate()
 
 # # Select sheet
 sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'Steps')
-
 # # Append yesterday's steps to the sheet
 gsheets.appendSheet(sheet, df, gs)
 
+sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'Cumulative')
 # Add cumulative stats to the sheet
 gsheets.setSheet(sheet, cumulativeDf)
