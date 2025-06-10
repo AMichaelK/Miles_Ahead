@@ -1,4 +1,4 @@
 .env
-venv
+.venv
 scratchOriginalAPI.py
 __pycache__
