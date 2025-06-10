@@ -386,32 +386,32 @@ class GarminAPI:
 
 #         return activities
 
-#     def get_progress_summary_between_dates(
-#         self, startdate, enddate, metric="distance", groupbyactivities=True
-#     ):
-#         """
-#         Fetch progress summary data between specific dates
-#         :param startdate: String in the format YYYY-MM-DD
-#         :param enddate: String in the format YYYY-MM-DD
-#         :param metric: metric to be calculated in the summary:
-#             "elevationGain", "duration", "distance", "movingDuration"
-#         :param groupbyactivities: group the summary by activity type
-#         :return: list of JSON activities with their aggregated progress summary
-#         """
+    def get_progress_summary_between_dates(
+        self, startdate, enddate, metric, groupbyactivities=True
+    ):
+        """
+        Fetch progress summary data between specific dates
+        :param startdate: String in the format YYYY-MM-DD
+        :param enddate: String in the format YYYY-MM-DD
+        :param metric: metric to be calculated in the summary:
+            "elevationGain", "duration", "distance", "movingDuration"
+        :param groupbyactivities: group the summary by activity type
+        :return: list of JSON activities with their aggregated progress summary
+        """
 
-#         url = self.garmin_connect_fitnessstats
-#         params = {
-#             "startDate": str(startdate),
-#             "endDate": str(enddate),
-#             "aggregation": "lifetime",
-#             "groupByParentActivityType": str(groupbyactivities),
-#             "metric": str(metric),
-#         }
+        url = self.garmin_connect_fitnessstats
+        params = {
+            "startDate": str(startdate),
+            "endDate": str(enddate),
+            "aggregation": "lifetime",
+            "groupByParentActivityType": str(groupbyactivities),
+            "metric": str(metric),
+        }
 
-#         logger.debug(
-#             f"Requesting fitnessstats by date from {startdate} to {enddate}"
-#         )
-#         return (url, params=params)
+        logger.debug(
+            f"Requesting fitnessstats by date from {startdate} to {enddate}"
+        )
+        return (url, params)
 
 #     def get_activity_types(self):
 #         url = self.garmin_connect_activity_types
