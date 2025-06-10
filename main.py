@@ -23,8 +23,6 @@ garmin = GarminAuth(
 
 garmin.login()
 
-# print(dir(garmin.client))
-
 # Instantiate API
 api = GarminAPI()
 
@@ -48,8 +46,8 @@ df = df.dropna()
 cumulativeDistanceStatsUrl, distanceParams = api.get_progress_summary_between_dates('2020-01-01', today, 'distance')
 cumulativeElevationStatsUrl, elevationParams = api.get_progress_summary_between_dates('2020-01-01', today, 'elevationGain')
 
-distance = garmin.connectapi(cumulativeDistanceStatsUrl, params={distanceParams})
-elevation = garmin.connectapi(cumulativeElevationStatsUrl, params={elevationParams})
+distance = garmin.connectapi(cumulativeDistanceStatsUrl, params=distanceParams)
+elevation = garmin.connectapi(cumulativeElevationStatsUrl, params=elevationParams)
 
 cumulativeRunningDistanceInCM = distance[0]['stats']['running']['distance']['sum']
 cumulativeRunningDistanceInMiles = cumulativeRunningDistanceInCM*6.2137e-6

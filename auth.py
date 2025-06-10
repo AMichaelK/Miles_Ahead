@@ -15,7 +15,7 @@ class GarminAuth:
         self.client = garth
         return self.client
 
-    def connectapi(self, url):
+    def connectapi(self, url, **kwargs):
         if not self.authenticated:
             self.login()
-        return self.client.connectapi(url)
+        return self.client.connectapi(url, **kwargs)
