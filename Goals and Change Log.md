@@ -30,7 +30,8 @@
     - [x] Set up graph for daily steps
         - [x] Show actual, target
     - [ ] More metrics
-        - [ ] Total miles since x date
+        - [x] Race Predictions
+        - [x] Total miles & elevation gained while running since x date
             - [ ] Compare mileage to large cities in the world?
         - [ ] Total stairs (per month from start date? but just show YTD?)
             - [ ] Compare to world's largest mountains
