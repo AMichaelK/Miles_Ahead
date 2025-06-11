@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 import datetime
 import pandas as pd
+import json
 
 # Refresh dotenv
 load_dotenv(override=True)
@@ -101,7 +102,7 @@ df = df.dropna()
 print(df)
 # %%
 #####################################################################
-# Part 4: Daily Steps
+# Part 4: Cumulative Distance Ran
 # STEPS
 
 garmin_connect_fitnessstats = "/fitnessstats-service/activity"
@@ -110,7 +111,8 @@ startdate='2020-01-01'
 enddate='2025-06-01'
 metric='distance' # could also be "elevationGain", "duration", "distance", "movingDuration"
 
-progressStats = garth.connectapi(garmin_connect_fitnessstats, params = {
+## This output is in cm
+runningDistanceprogressStats = garth.connectapi(garmin_connect_fitnessstats, params = {
         "startDate": str(startdate),
         "endDate": str(enddate),
         "aggregation": "lifetime",
@@ -118,30 +120,48 @@ progressStats = garth.connectapi(garmin_connect_fitnessstats, params = {
         "metric": str(metric),
 })
 
+# %%
+# Get cumulative running miles
+# print(json.dumps(runningDistanceprogressStats, indent="\t"))
+cumulativeRunningDistanceInCM = runningDistanceprogressStats[0]['stats']['running']['distance']['sum']
+cumulativeRunningDistanceInMiles = cumulativeRunningDistanceInCM*6.2137e-6
+print(cumulativeRunningDistanceInMiles)
 
+# %%
+#####################################################################
+# Part 4b: Cumulative elevation gain
+# ELEVATION
+startdate='2020-01-01'
+enddate='2025-06-01'
+metric='elevationGain' # could also be "elevationGain", "duration", "distance", "movingDuration"
 
-def get_progress_summary_between_dates(
-    self, startdate, enddate, metric="distance", groupbyactivities=True
-):
-    """
-    Fetch progress summary data between specific dates
-    :param startdate: String in the format YYYY-MM-DD
-    :param enddate: String in the format YYYY-MM-DD
-    :param metric: metric to be calculated in the summary:
-        "elevationGain", "duration", "distance", "movingDuration"
-    :param groupbyactivities: group the summary by activity type
-    :return: list of JSON activities with their aggregated progress summary
-    """
-
-    progressUrl = self.garmin_connect_fitnessstats
-    params = {
+runningElevationProgressStats = garth.connectapi(garmin_connect_fitnessstats, params = {
         "startDate": str(startdate),
         "endDate": str(enddate),
         "aggregation": "lifetime",
-        "groupByParentActivityType": str(groupbyactivities),
+        "groupByParentActivityType": 'True',
         "metric": str(metric),
-    }
-    # return (url, params=params)
+})
+
+# print(json.dumps(runningElevationProgressStats, indent="\t"))
+
+# %% 
+import pandas as pd
+cumulativeDf = [{"Distance": '1234', "Elevation": '1234'}]
+cumulativeDf = pd.DataFrame(cumulativeDf)
+cumulativeDf = cumulativeDf.dropna()
+print(cumulativeDf)
+print(type(cumulativeDf))
+
+# %% 
+# TEST
+
+
+# %%
+# Get cumulative running elevation
+cumulativeRunningElevationInCM = runningElevationProgressStats[0]['stats']['running']['elevationGain']['sum']
+cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM*6.2137e-6
+print(cumulativeRunningElevationInMiles)
 
 # %%
 #####################################################################
