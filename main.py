@@ -31,7 +31,6 @@ gsheets = GSheets()
 
 #############################################################################
 # Get steps from yesterday
-# steps = garmin.connectapi("/usersummary-service/stats/steps/daily/2025-06-03/2025-06-03")
 url = api.get_daily_steps(yesterday, yesterday)
 steps = garmin.connectapi(url)
 
@@ -49,16 +48,17 @@ cumulativeElevationStatsUrl, elevationParams = api.get_progress_summary_between_
 distance = garmin.connectapi(cumulativeDistanceStatsUrl, params=distanceParams)
 elevation = garmin.connectapi(cumulativeElevationStatsUrl, params=elevationParams)
 
+# Cumulative Distance
 cumulativeRunningDistanceInCM = distance[0]['stats']['running']['distance']['sum']
 cumulativeRunningDistanceInMiles = cumulativeRunningDistanceInCM*6.2137e-6
-print(cumulativeRunningDistanceInMiles)
 
+# Cumulative Elevation
 cumulativeRunningElevationInCM = elevation[0]['stats']['running']['elevationGain']['sum']
 cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM*6.2137e-6
-print(cumulativeRunningElevationInMiles)
 
-cumulativeDf = {"Distance": cumulativeRunningDistanceInMiles, "Elevation": cumulativeRunningElevationInMiles}
-
+cumulativeDf = [{"Distance": cumulativeRunningDistanceInMiles, "Elevation": cumulativeRunningElevationInMiles}]
+cumulativeDf = pd.DataFrame(cumulativeDf)
+cumulativeDf = cumulativeDf.to_string(index=False)
 #############################################################################
 # Google Sheets
 gc = gsheets.authenticate()
