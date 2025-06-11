@@ -58,7 +58,6 @@ cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM*6.2137e-6
 
 cumulativeDf = [{"Distance": cumulativeRunningDistanceInMiles, "Elevation": cumulativeRunningElevationInMiles}]
 cumulativeDf = pd.DataFrame(cumulativeDf)
-cumulativeDf = cumulativeDf.to_string(index=False)
 #############################################################################
 # Google Sheets
 gc = gsheets.authenticate()
