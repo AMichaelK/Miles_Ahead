@@ -54,7 +54,7 @@ cumulativeRunningDistanceInMiles = cumulativeRunningDistanceInCM*6.2137e-6
 
 # Cumulative Elevation
 cumulativeRunningElevationInCM = elevation[0]['stats']['running']['elevationGain']['sum']
-cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM*6.2137e-6
+cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM/30.48
 
 cumulativeDf = [{"Distance": cumulativeRunningDistanceInMiles, "Elevation": cumulativeRunningElevationInMiles}]
 cumulativeDf = pd.DataFrame(cumulativeDf)

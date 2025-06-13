@@ -147,7 +147,7 @@ runningElevationProgressStats = garth.connectapi(garmin_connect_fitnessstats, pa
 
 # %% 
 import pandas as pd
-cumulativeDf = [{"Distance": '1234', "Elevation": '1234'}]
+cumulativeDf = runningElevationProgressStats
 cumulativeDf = pd.DataFrame(cumulativeDf)
 cumulativeDf = cumulativeDf.dropna()
 print(cumulativeDf)
@@ -158,9 +158,9 @@ print(type(cumulativeDf))
 
 
 # %%
-# Get cumulative running elevation
+# Get cumulative running elevation (in ft)
 cumulativeRunningElevationInCM = runningElevationProgressStats[0]['stats']['running']['elevationGain']['sum']
-cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM*6.2137e-6
+cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM/30.48
 print(cumulativeRunningElevationInMiles)
 
 # %%
