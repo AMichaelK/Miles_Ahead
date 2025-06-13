@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # COPY . .
 
 # ADD auth.py gsheets.py main.py
-ADD auth.py gsheets.py main.py api.py .
+ADD auth.py gsheets.py main.py api.py comparisonVariables.py .
 
 # Specify the command to run the application
 ENTRYPOINT [ "python", "main.py" ]
