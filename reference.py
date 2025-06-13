@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import datetime
 import pandas as pd
 import json
+from comparisonVariables import Comparisons
 
 # Refresh dotenv
 load_dotenv(override=True)
@@ -151,7 +152,7 @@ cumulativeDf = runningElevationProgressStats
 cumulativeDf = pd.DataFrame(cumulativeDf)
 cumulativeDf = cumulativeDf.dropna()
 print(cumulativeDf)
-print(type(cumulativeDf))
+# print(type(cumulativeDf))
 
 # %% 
 # TEST
@@ -162,6 +163,21 @@ print(type(cumulativeDf))
 cumulativeRunningElevationInCM = runningElevationProgressStats[0]['stats']['running']['elevationGain']['sum']
 cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM/30.48
 print(cumulativeRunningElevationInMiles)
+
+# %%
+# Setup DataFrames for Distance and Elevation
+
+DISTANCE_TUPLE = Comparisons.DISTANCE_TUPLE
+# print(json.dumps(Comparisons.DISTANCE_DICT, indent="\t"))
+distanceDf = pd.DataFrame(DISTANCE_TUPLE, columns=['Name', 'Distance'])
+new_row = {'Name': 'Me', 'Distance': cumulativeRunningDistanceInMiles}
+distanceDf.loc[len(distanceDf)] = new_row
+
+ELEVATION_TUPLE = Comparisons.HEIGHTS_TUPLE
+elevationDf = pd.DataFrame(ELEVATION_TUPLE, columns=['Name', 'Elevation'])
+new_row = {'Name': 'Me', 'Elevation': cumulativeRunningElevationInMiles}
+elevationDf.loc[len(elevationDf)] = new_row
+# print(elevationDf)
 
 # %%
 #####################################################################
