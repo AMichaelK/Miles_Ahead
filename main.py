@@ -41,6 +41,21 @@ df = pd.DataFrame(steps)
 df = df.dropna()
 
 #############################################################################
+# Get Display Name
+api.get_display_name(garmin.client)
+
+# Race Predictions
+# Predictions didn't start till April 2025
+predictUrl, predictParams = api.get_race_predictions('2025-04-01', today, 'monthly')
+monthly_race_predictions = garmin.connectapi(predictUrl, params=predictParams)
+
+# Setup Predictions DataFrame
+df = pd.DataFrame(monthly_race_predictions)
+df = df.dropna()
+predictDf = df.drop(df.columns[0], axis=1)
+print(predictDf)
+
+#############################################################################
 # Get Cumulative Stats from Runs
 
 cumulativeDistanceStatsUrl, distanceParams = api.get_progress_summary_between_dates('2020-01-01', today, 'distance')
@@ -87,3 +102,7 @@ gsheets.setSheet(sheet, distanceDf)
 
 sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'CumulativeElevation')
 gsheets.setSheet(sheet, elevationDf)
+
+# Add monthly predictions stats to the sheet
+sheet, gs = gsheets.selectSheet(gc, os.getenv('SHEETKEY'), 'RacePredictions')
+gsheets.setSheet(sheet, predictDf)

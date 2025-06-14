@@ -12,10 +12,12 @@ load_dotenv(override=True)
 #####################################################################
 # Part1 :Login
 # Try to resume Garth from file, if not, login
+garth.resume("~/.garth")
 # if garth.resume("~/.garth"):
 #     pass
 # else:
-garth.login(os.getenv('EMAIL'), os.getenv('PASS'))
+#     garth.login(os.getenv('EMAIL'), os.getenv('PASS'))
+
 
 # %%
 print(dir(garth))
@@ -125,6 +127,7 @@ runningDistanceprogressStats = garth.connectapi(garmin_connect_fitnessstats, par
 # Get cumulative running miles
 # print(json.dumps(runningDistanceprogressStats, indent="\t"))
 cumulativeRunningDistanceInCM = runningDistanceprogressStats[0]['stats']['running']['distance']['sum']
+print(cumulativeRunningDistanceInCM)
 cumulativeRunningDistanceInMiles = cumulativeRunningDistanceInCM*6.2137e-6
 print(cumulativeRunningDistanceInMiles)
 
@@ -154,13 +157,10 @@ cumulativeDf = cumulativeDf.dropna()
 print(cumulativeDf)
 # print(type(cumulativeDf))
 
-# %% 
-# TEST
-
-
 # %%
 # Get cumulative running elevation (in ft)
 cumulativeRunningElevationInCM = runningElevationProgressStats[0]['stats']['running']['elevationGain']['sum']
+print(cumulativeRunningDistanceInCM)
 cumulativeRunningElevationInMiles = cumulativeRunningElevationInCM/30.48
 print(cumulativeRunningElevationInMiles)
 

@@ -4,6 +4,9 @@ logger = logging.getLogger(__name__)
 
 class GarminAPI:
 
+    def __init__(self, displayName: str = None):
+        self.display_name = displayName
+
     garmin_connect_daily_summary_url = ("/usersummary-service/usersummary/daily")
     garmin_connect_metrics_url = ("/metrics-service/metrics/maxmet/daily")
     garmin_connect_daily_stats_steps_url = ("/usersummary-service/stats/steps/daily")
@@ -50,6 +53,9 @@ class GarminAPI:
     garmin_connect_kml_download = ("/download-service/export/kml/activity")
     garmin_connect_csv_download = ("/download-service/export/csv/activity")
     garmin_graphql_endpoint = "graphql-gateway/graphql"
+
+    def get_display_name(self, garth):
+        self.display_name = garth.client.profile['displayName']
 
 #     def get_steps_data(self, cdate):
 #         """Fetch available steps data 'cDate' format 'YYYY-MM-DD'."""
@@ -226,49 +232,49 @@ class GarminAPI:
 
 #             return (url, params=params)
 
-#     def get_race_predictions(self, startdate=None, enddate=None, _type=None):
-#         """
-#         Return race predictions for the 5k, 10k, half marathon and marathon.
-#         Accepts either 0 parameters or all three:
-#         If all parameters are empty, returns the race predictions for the current date
-#         Or returns the race predictions for each day or month in the range provided
+    def get_race_predictions(self, startdate=None, enddate=None, _type=None):
+        """
+        Return race predictions for the 5k, 10k, half marathon and marathon.
+        Accepts either 0 parameters or all three:
+        If all parameters are empty, returns the race predictions for the current date
+        Or returns the race predictions for each day or month in the range provided
 
-#         Keyword Arguments:
-#         'startdate' the date of the earliest race predictions
-#         Cannot be more than one year before 'enddate'
-#         'enddate' the date of the last race predictions
-#         '_type' either 'daily' (the predictions for each day in the range) or
-#         'monthly' (the aggregated monthly prediction for each month in the range)
-#         """
+        Keyword Arguments:
+        'startdate' the date of the earliest race predictions
+        Cannot be more than one year before 'enddate'
+        'enddate' the date of the last race predictions
+        '_type' either 'daily' (the predictions for each day in the range) or
+        'monthly' (the aggregated monthly prediction for each month in the range)
+        """
 
-#         valid = {"daily", "monthly", None}
-#         if _type not in valid:
-#             raise ValueError("results: _type must be one of %r." % valid)
+        valid = {"daily", "monthly", None}
+        if _type not in valid:
+            raise ValueError("results: _type must be one of %r." % valid)
 
-#         if _type is None and startdate is None and enddate is None:
-#             url = (
-#                 self.garmin_connect_race_predictor_url
-#                 + f"/latest/{self.display_name}"
-#             )
-#             return (url)
+        if _type is None and startdate is None and enddate is None:
+            url = (
+                self.garmin_connect_race_predictor_url
+                + f"/latest/{self.display_name}"
+            )
+            return (url)
 
-#         elif (
-#             _type is not None and startdate is not None and enddate is not None
-#         ):
-#             url = (
-#                 self.garmin_connect_race_predictor_url
-#                 + f"/{_type}/{self.display_name}"
-#             )
-#             params = {
-#                 "fromCalendarDate": str(startdate),
-#                 "toCalendarDate": str(enddate),
-#             }
-#             return (url, params=params)
+        elif (
+            _type is not None and startdate is not None and enddate is not None
+        ):
+            url = (
+                self.garmin_connect_race_predictor_url
+                + f"/{_type}/{self.display_name}"
+            )
+            params = {
+                "fromCalendarDate": str(startdate),
+                "toCalendarDate": str(enddate),
+            }
+            return (url, params)
 
-#         else:
-#             raise ValueError(
-#                 "You must either provide all parameters or no parameters"
-#             )
+        else:
+            raise ValueError(
+                "You must either provide all parameters or no parameters"
+            )
 
 #     def get_training_status(self, cdate: str) -> Dict[str, Any]:
 #         """Return training status data for current user."""

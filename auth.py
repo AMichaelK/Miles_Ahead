@@ -10,7 +10,7 @@ class GarminAuth:
 
     def login(self):
         garth.login(self.email, self.password)
-
+        # garth.resume("~/.garth") # Resume
         self.authenticated = True
         self.client = garth
         return self.client
